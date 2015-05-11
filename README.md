@@ -30,7 +30,7 @@ For this test, we will check the latency of every node pair combination of the s
 Recommended Setup
 -----------------
 
-Install MVAPICH Benchmark on your local system using the following tarball file:
+Install MVAPICH Benchmark on your local system by entering the following on your terminal:
 ```
   wget http://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-4.4.1.tar.gz
 
