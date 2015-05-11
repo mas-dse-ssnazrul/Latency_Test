@@ -29,7 +29,7 @@ Finally, all the racks on Comet are connected to eachother via the MID TIER swit
 
 For this test, we will check the latency of every node pair combination of the sets of 18 at the L1 level.
 
-[Latency Test](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/LT.png)
+![Latency Test](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/LT.png)
 
 Recommended Setup
 -----------------
@@ -76,4 +76,4 @@ ibrun -v $BINARY
 ```
 
 The entire process of performing OMB Benchmark Latency tests on CPU nodes at L1 switch level is 
-automated by the [latency.py](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/latency.py) script. 
+automated by the [latency.py](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/latency.py) script.
