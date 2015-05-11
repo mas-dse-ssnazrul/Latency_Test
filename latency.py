@@ -1,3 +1,9 @@
+import subprocess
+import numpy as np
+import re
+
+def combinations(array):
+    '''
     Generates every combination of an array
 
     Args:
