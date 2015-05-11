@@ -8,7 +8,8 @@ Background
 
 Latency is the time delay between simulation and response between 2 nodes. For this test, we send 1 Mb data from one node to another and calculate the time delay. This calculation is carried out using the [OMB Benchmark](https://www.nersc.gov/users/computational-systems/cori/nersc-8-procurement/trinity-nersc-8-rfp/nersc-8-trinity-benchmarks/omb-mpi-tests/) module under the [MVAPICH Package](http://mvapich.cse.ohio-state.edu/benchmarks/) to carry out our Latency tests.
 
-
+The Comet CPU node architecture is illustrated below:
+![Architecture](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/Nodes.png)
 
 Recommended Setup
 -----------------
