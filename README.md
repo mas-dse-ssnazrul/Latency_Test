@@ -11,6 +11,24 @@ Latency is the time delay between simulation and response between 2 nodes. For t
 The Comet CPU node architecture is illustrated below:
 ![Architecture](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/Nodes.png)
 
+Let us first look at some of theese 18 CPU nodes. Below you can see the label of 3 nodes: comet-07-26, comet-07-27 and comet-07-28.
+
+![Individual CPU Nodes](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/CPU%20nodes.jpg)
+
+Each node contain 24 Intel processor cores. On the label, the first part, "comet" tells you that these are Comet nodes. The second part, "07", means the node is on Rack 07. The third part, "26", "27" and "28" represent the unique identifier of each node on Rack 07. All 18 of these switches, comet-07-[19-36], are connected to the L1 switch as seen below:
+
+![L1 level](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/L1%20Switches.jpg)
+
+The L1 switches from each set of 18 nodes are connected to all the other sets on the same rack via the L2 switch:
+
+![L2 level](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/L2%20Switches.jpg)
+
+Finally, all the racks on Comet are connected to eachother via the MID TIER switch:
+
+![MIT TIER1](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/MID%20TIER.jpg)
+
+For this test, we will check the latency of every node pair combination of the sets of 18 at the L1 level.
+
 Recommended Setup
 -----------------
 
