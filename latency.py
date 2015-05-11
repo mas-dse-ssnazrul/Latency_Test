@@ -23,7 +23,6 @@ def latency_time(filename):
     Args:
         filename (string): name of output file
     '''
-
     file=open(filename)
     str2search=''
     for message in file:
