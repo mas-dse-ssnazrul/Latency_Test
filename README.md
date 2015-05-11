@@ -41,7 +41,7 @@ use the sameple Slurm batch script:
 #SBATCH -A use300
 
 #We dont have a root binary for latency and hence using our own
-export BINARY=/<path-to-installation>/mpi/pt2pt/osu_latency
+export BINARY = /<path-to-installation>/mpi/pt2pt/osu_latency
 
 #Activate Latency file from OMB Benchmark and ibrun for parallel processing
 ibrun -v $BINARY 
