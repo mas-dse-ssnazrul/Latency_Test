@@ -1,12 +1,19 @@
 Latency Test
 ============
 
-This repo contains the codes to carry out Latency Tests on Comet
+This repo contains the codes to carry out Latency Tests on Comet.
+
+Background
+----------
+
+Latency is the time delay between simulation and response between 2 nodes. For this test, we send 1 Mb data from one node to another and calculate the time delay. This calculation is carried out using the [OMB Benchmark](https://www.nersc.gov/users/computational-systems/cori/nersc-8-procurement/trinity-nersc-8-rfp/nersc-8-trinity-benchmarks/omb-mpi-tests/) module under the [MVAPICH Package](http://mvapich.cse.ohio-state.edu/benchmarks/) to carry out our Latency tests.
+
+
 
 Recommended Setup
 -----------------
 
-Install OMB Benchmark on your local system using the following tarball file:
+Install MVAPICH Benchmark on your local system using the following tarball file:
 ```
   wget http://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-4.4.1.tar.gz
 
@@ -25,7 +32,7 @@ Running Tests
 -------------
 
 For running a sample OMB Benchmark Latency Test between nodes comet-10-01 and comet-10-02, 
-use the sameple Slurm batch script:
+use the sample Slurm batch script:
 
 ```
 #!/bin/bash
