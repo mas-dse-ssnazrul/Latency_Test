@@ -29,6 +29,8 @@ Finally, all the racks on Comet are connected to eachother via the MID TIER swit
 
 For this test, we will check the latency of every node pair combination of the sets of 18 at the L1 level.
 
+[Latency Test](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/LT.png)
+
 Recommended Setup
 -----------------
 
