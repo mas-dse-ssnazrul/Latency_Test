@@ -1,7 +1,7 @@
 Latency Test
 ============
 
-This repo contains the codes to carry out Latency Tests on Comet.
+This repo contains the codes to carry out Latency Tests on [Comet](https://portal.xsede.org/sdsc-comet).
 
 Background
 ----------
