@@ -23,7 +23,7 @@ All 18 of these switches, comet-07-[19-36], are connected to the L1 switch as se
 
 The L1 switches from each set of 18 nodes are connected to all the other sets on the same rack via the L2 switch. Finally, all the racks on Comet are connected to eachother via the MID TIER switch:
 
-For this test, we will check the latency of every node pair combination of the sets of 18 at the L1 level.
+For this test, we will check the latency of every node pair combination of the sets of 18 at the L1 level:
 
 ![Latency Test](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/LT.png)
 
