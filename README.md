@@ -33,7 +33,7 @@ Running Tests
 -------------
 
 For running a sample OMB Benchmark Latency Test between nodes comet-10-01 and comet-10-02, 
-use the sample Slurm batch script:
+use the sample [Slurm](http://slurm.schedmd.com/) batch script:
 
 ```
 #!/bin/bash
