@@ -19,13 +19,7 @@ Each node contain 24 Intel processor cores. On the label, the first part, "comet
 
 ![L1 level](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/L1%20Switches.jpg)
 
-The L1 switches from each set of 18 nodes are connected to all the other sets on the same rack via the L2 switch:
-
-![L2 level](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/L2%20Switches.jpg)
-
-Finally, all the racks on Comet are connected to eachother via the MID TIER switch:
-
-![MIT TIER1](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/MID%20TIER.jpg)
+The L1 switches from each set of 18 nodes are connected to all the other sets on the same rack via the L2 switch. Finally, all the racks on Comet are connected to eachother via the MID TIER switch:
 
 For this test, we will check the latency of every node pair combination of the sets of 18 at the L1 level.
 
