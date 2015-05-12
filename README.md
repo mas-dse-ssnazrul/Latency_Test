@@ -6,7 +6,11 @@ This repo contains the codes to carry out Latency Tests on [Comet](http://www.sd
 Background
 ----------
 
-Latency is the time delay between simulation and response between 2 nodes. A node is a standalone "computer in a box", usually comprised of multiple CPUs/processors/cores, memory, network interfaces, etc. Nodes are networked together to comprise a supercomputer. Details on nodes and other parallel computing conceps can be found on Lawrence Berkeley National Lab's ["Introduction to Parallel Computing"](https://computing.llnl.gov/tutorials/parallel_comp/) page.
+Latency is the time delay between simulation and response between 2 nodes. A node is a standalone "computer in a box", usually comprised of multiple CPUs/processors/cores, memory, network interfaces, etc. Nodes are networked together to comprise a supercomputer. Technical details on Comet is available on this [link](https://portal.xsede.org/sdsc-comet#table1).
+
+A standard compute node consists of 2 sockets. Each socket consists of 12 Intel Xeon E5-2680v3 processors in [RAID 10 (2x6)](http://en.wikipedia.org/wiki/Standard_RAID_levels). 
+
+Details on nodes and other parallel computing conceps can be found on Lawrence Berkeley National Lab's ["Introduction to Parallel Computing"](https://computing.llnl.gov/tutorials/parallel_comp/) page.
 
 For this test, we send 1 Mb data from one node to another and calculate the time delay. The Latency tests are carried out using the [OMB Benchmark](https://www.nersc.gov/users/computational-systems/cori/nersc-8-procurement/trinity-nersc-8-rfp/nersc-8-trinity-benchmarks/omb-mpi-tests/) module in the [MVAPICH Package](http://mvapich.cse.ohio-state.edu/benchmarks/).
 
@@ -17,7 +21,7 @@ Let us first look at some of theese 18 CPU nodes. Below you can see the label of
 
 ![Individual CPU Nodes](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/CPU%20nodes.jpg)
 
-Each node contains 48 Intel processor cores. These are 48 cores are distributed among 4 sockets. 36 cores are used for compputations while 12 cores are used as parity under [RAID 5](http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_5) technology. A user is allowed to access 36 cores per node on Comet.
+
 
 On the label, the first part, "comet" means that these are Comet nodes. The second part, "07", means the node is on Rack 07. The third part, "26", "27" and "28" represent the unique identifier of each node on Rack 07. 
 
