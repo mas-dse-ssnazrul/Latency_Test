@@ -15,7 +15,7 @@ Let us first look at some of theese 18 CPU nodes. Below you can see the label of
 
 ![Individual CPU Nodes](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/CPU%20nodes.jpg)
 
-Each node contain 48 Intel processor cores. These are 48 cores are distributed among 4 sockets. 3 sockets (36 cores) are used for compputations while 1 socket (12 cores) is used as parity under [RAID 5](http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_5) technology. A user is allowed to access 36 cores per node on Comet.
+Each node contain 48 Intel processor cores. These are 48 cores are distributed among 4 sockets. 36 cores are used for compputations while 12 cores are used as parity under [RAID 5](http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_5) technology. A user is allowed to access 36 cores per node on Comet.
 
 On the label, the first part, "comet" tells you that these are Comet nodes. The second part, "07", means the node is on Rack 07. The third part, "26", "27" and "28" represent the unique identifier of each node on Rack 07. 
 
