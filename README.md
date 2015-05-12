@@ -54,6 +54,7 @@ For running a sample OMB Benchmark Latency Test between nodes comet-10-01 and co
 use the sample [Slurm](http://slurm.schedmd.com/) batch script:
 
 ```
+
 #!/bin/bash
 
 #SBATCH -o results.out
@@ -71,6 +72,31 @@ export BINARY = /<path-to-installation>/mpi/pt2pt/osu_latency
 
 #Activate Latency file from OMB Benchmark and ibrun for parallel processing
 ibrun -v $BINARY 
+
+```
+On the above batch script, 1 core from each node, comet-10-[01-02], exchange data and the latency is recorded in ```results.out```. Any coding error will be recorded on ```results.err```. When the calculation is done, an email will sent to email address specified on ```<User Email>```. We will be running our tests on the ```use300``` projects group. Notice that we specified a ```BINARY``` path to our MVAPICH installation directory. Comet does not allow us to have root installation without admin level previledges. As a result, we create our own binary on the login node. 
+
+Here is a PBS batch script for running the same test on Gordon or TSCC:
+
+```
+
+#!/bin/bash
+
+#PBS -o results.out
+#PBS -e results.err
+#PBS -l nodes=2:ppn=1:ib
+#PBS -l nodes=comet-10-01, comet-10-02
+#PBS -l walltime=[01:00:00]
+#PBS -M <User Email>
+#PBS -m abe
+#PBS -A use300
+
+#We dont have a root binary for latency and hence using our own
+export BINARY = /<path-to-installation>/mpi/pt2pt/osu_latency
+
+#Activate Latency file from OMB Benchmark and ibrun for parallel processing
+ibrun -v $BINARY `
+
 ```
 
 The entire process of performing OMB Benchmark Latency tests on CPU nodes at L1 switch level is 
