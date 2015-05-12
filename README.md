@@ -6,7 +6,7 @@ This repo contains the codes to carry out Latency Tests on [Comet](http://www.sd
 Background
 ----------
 
-Latency is the time delay between simulation and response between 2 nodes. A node is a standalone "computer in a box", usually comprised of multiple CPUs/processors/cores, memory, network interfaces, etc. Nodes are networked together to comprise a supercomputer. For our latency test, we send 1 Mb data from one node to another and calculate the time delay. The latency tests are carried out using the [OMB Benchmark](https://www.nersc.gov/users/computational-systems/cori/nersc-8-procurement/trinity-nersc-8-rfp/nersc-8-trinity-benchmarks/omb-mpi-tests/) module in the [MVAPICH Package](http://mvapich.cse.ohio-state.edu/benchmarks/).
+Latency is the time delay between simulation and response between 2 nodes. A node is a standalone "computer in a box", usually comprised of multiple CPUs/processors/cores, memory, network interfaces, etc. Nodes are networked together to comprise a supercomputer. For our latency test, we will send 1 Mb data from one node to another and calculate the time delay. The latency tests are carried out using the [OMB Benchmark](https://www.nersc.gov/users/computational-systems/cori/nersc-8-procurement/trinity-nersc-8-rfp/nersc-8-trinity-benchmarks/omb-mpi-tests/) module in the [MVAPICH Package](http://mvapich.cse.ohio-state.edu/benchmarks/).
 
 The Comet CPU node architecture is illustrated below:
 ![Architecture](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/Nodes.png)
