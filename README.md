@@ -76,7 +76,7 @@ ibrun -v $BINARY
 ```
 On the above batch script, 1 core from each node, comet-10-[01-02], exchange data and the latency is recorded in ```results.out```. Any coding error will be recorded on ```results.err```. When the calculation is done, an email will sent to email address specified on ```<User Email>```. We will be running our tests on the ```use300``` projects group. Notice that we specified a ```BINARY``` path to our MVAPICH installation directory. Comet does not allow us to have root installation without admin level previledges. As a result, we create our own binary on the login node. 
 
-Here is a PBS batch script for running the same test on Gordon or TSCC:
+Here is a [PBS/Torque](https://kb.iu.edu/d/avmy) batch script for running the same test on Gordon or TSCC:
 
 ```
 
