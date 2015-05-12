@@ -6,14 +6,14 @@ This repo contains the codes to carry out Latency Tests on [Comet](http://www.sd
 Background
 ----------
 
-Latency is the time delay between simulation and response between 2 nodes. For our latency test, we send 1 Mb data from one node to another and calculate the time delay. The latency tests are carried out using the [OMB Benchmark](https://www.nersc.gov/users/computational-systems/cori/nersc-8-procurement/trinity-nersc-8-rfp/nersc-8-trinity-benchmarks/omb-mpi-tests/) module in the [MVAPICH Package](http://mvapich.cse.ohio-state.edu/benchmarks/).
-
-A node is a standalone "computer in a box", usually comprised of multiple CPUs/processors/cores, memory, network interfaces, etc. Nodes are networked together to comprise a supercomputer. A standard compute node consists of 2 sockets. Each socket consists of 12 Intel Xeon E5-2680v3 processors in [RAID 1+0 (2x6)](http://en.wikipedia.org/wiki/Standard_RAID_levels). Technical details on Comet nodes are available on this [link](https://portal.xsede.org/sdsc-comet#table1).
+Latency is the time delay between simulation and response between 2 nodes. A node is a standalone "computer in a box", usually comprised of multiple CPUs/processors/cores, memory, network interfaces, etc. Nodes are networked together to comprise a supercomputer. For our latency test, we send 1 Mb data from one node to another and calculate the time delay. The latency tests are carried out using the [OMB Benchmark](https://www.nersc.gov/users/computational-systems/cori/nersc-8-procurement/trinity-nersc-8-rfp/nersc-8-trinity-benchmarks/omb-mpi-tests/) module in the [MVAPICH Package](http://mvapich.cse.ohio-state.edu/benchmarks/).
 
 The Comet CPU node architecture is illustrated below:
 ![Architecture](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/Nodes.png)
 
-Let us first look at some of theese 18 CPU nodes. Below you can see the label of 3 nodes: comet-07-26, comet-07-27 and comet-07-28.
+Let us first look at some of these 18 CPU nodes. A standard compute node consists of 2 sockets. Each socket consists of 12 Intel Xeon E5-2680v3 processors in [RAID 1+0 (2x6)](http://en.wikipedia.org/wiki/Standard_RAID_levels). Technical details on Comet nodes are available on this [link](https://portal.xsede.org/sdsc-comet#table1).
+
+Below you can see the label of 3 nodes: comet-07-26, comet-07-27 and comet-07-28.
 
 ![Individual CPU Nodes](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/CPU%20nodes.jpg)
 
