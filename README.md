@@ -17,7 +17,7 @@ Let us first look at some of theese 18 CPU nodes. Below you can see the label of
 
 Each node contain 24 Intel processor cores. On the label, the first part, "comet" tells you that these are Comet nodes. The second part, "07", means the node is on Rack 07. The third part, "26", "27" and "28" represent the unique identifier of each node on Rack 07. 
 
-All 18 of these switches, comet-07-[19-36], are connected to the L1 switch as seen below:
+All 18 of these switches, comet-07-[19-36], are connected to the L1 switch via InfiniBand Interconnects as seen below:
 
 ![L1 level](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/L1%20Switches.jpg)
 
