@@ -11,9 +11,9 @@ Latency is the time delay between simulation and response between 2 nodes. A nod
 The Comet CPU node architecture is illustrated below:
 ![Architecture](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/Nodes.png)
 
-Let us first look at some of these 18 CPU nodes. A standard compute node consists of 2 sockets. Each socket consists of 12 Intel Xeon E5-2680v3 processors in [RAID 1+0 (2x6)](http://en.wikipedia.org/wiki/Standard_RAID_levels). Technical details on Comet nodes are available on this [link](https://portal.xsede.org/sdsc-comet#table1).
+Let us first look at a set of 18 compute node. A standard compute node consists of 2 sockets. Each socket consists of 12 Intel Xeon E5-2680v3 processors in [RAID 1+0 (2x6)](http://en.wikipedia.org/wiki/Standard_RAID_levels). Technical details on Comet nodes are available on this [link](https://portal.xsede.org/sdsc-comet#table1).
 
-Below you can see the label of 3 nodes: comet-07-26, comet-07-27 and comet-07-28.
+Below you can see the label of 3 CPU compute nodes: comet-07-26, comet-07-27 and comet-07-28.
 
 ![Individual CPU Nodes](https://github.com/SDSC-HPC-Consultants/Latency_Test/blob/master/static/CPU%20nodes.jpg)
 
