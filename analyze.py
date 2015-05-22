@@ -5,9 +5,8 @@ file=open('cat.out')
 str2search=''
 for message in file:
 	str2search += message
-word_search=re.search('1\s+([\d\.]+)',str2search)
-result=(word_search.group()).split()
-result.remove('1')
+word_search=re.search('(?!1\s+)([\d\.]+)',str2search)
+result=word_search.group()
 print result
 
 
