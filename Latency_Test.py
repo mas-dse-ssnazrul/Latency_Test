@@ -28,9 +28,8 @@ def latency_time(filename):
     str2search=''
     for message in file:
 	    str2search += message
-    word_search=re.search(pattern,str2search)
+    word_search=re.search('(?!1\s+)([\d\.]+)',str2search)
     result=(word_search.group()).split()
-    result.remove('1')
     return result
 
 def BatchScript(Rack, Node_List):
