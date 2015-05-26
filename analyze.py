@@ -1,3 +1,5 @@
+_author_='Syed Sadat Nazrul'
+
 import re
 
 filename = 'cat.out'
