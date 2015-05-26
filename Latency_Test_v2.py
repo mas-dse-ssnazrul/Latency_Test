@@ -41,7 +41,7 @@ def BatchScript(Rack, Node_List):
     f=open("batch_script", "w")
     f.write("#!/bin/bash")
     description='''
-#SBATCH --job-name=--job-name=comet-%02d-[%02d-%02d]
+#SBATCH --job-name=comet-%02d-[%02d-%02d]
 #SBATCH -o comet-%02d-[%02d-%02d].out
 #SBATCH -e comet-%02d-[%02d-%02d].err
 #SBATCH --nodes %d
