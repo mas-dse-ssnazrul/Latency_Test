@@ -1,3 +1,5 @@
+_author_='Syed Sadat Nazrul'
+
 import subprocess
 import numpy as np
 import re
