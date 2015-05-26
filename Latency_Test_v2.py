@@ -5,9 +5,8 @@ import re
 def combinations(array):
     '''
     Generates every combination of an array
-
-    Args:
-        array (list): List of nodes
+    :param array (list): List of nodes
+    :return: combinations (list)
     '''
     combo=[]
     for i in array:
@@ -19,11 +18,9 @@ def combinations(array):
 def latency_time(filename):
     '''
     Collects latency value from output file
-
-    Args:
-        filename (string): name of output file
+    :param filename (string): name of output file
+    :return: latency times for 1 Mb (CSV file)
     '''
-
     file=open(filename)
     str2search=''
     for message in file:
@@ -35,9 +32,8 @@ def latency_time(filename):
 def BatchScript(Rack, Node_List):
     '''
     Generates and submits a batch script for running OMB Latency testing
-
-    Args:
-        Node_Pair (int list): The pair of nodes. (int list)
+    :param Node_Pair (int list): The pair of nodes. (int list)
+    :return: None
     '''
     #Generate a batch script
     f=open("batch_script", "w")
