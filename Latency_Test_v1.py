@@ -60,4 +60,4 @@ ibrun -v $BINARY
     subprocess.call(["rm","batch_script"])
 
 for i in 3*range(20):
-    BatchScript(10,np.linspace(i+1,i+2,3))
+    BatchScript(10,np.linspace(i+1,i+3,3))

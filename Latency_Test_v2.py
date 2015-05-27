@@ -53,11 +53,11 @@ def BatchScript(Rack, Node_List):
 #SBATCH -A use300
 export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_latency
         '''%(
-            Rack,Node_List[0],Node_List[-1],        #Job Name
-            Rack,Node_List[0],Node_List[-1],        #Output File
-            Rack,Node_List[0],Node_List[-1],        #Error File
-            len(Node_List),                         #Number of Nodes
-            Rack,Node_List[0],Node_List[-1]         #Node list
+            Rack, Node_List[0], Node_List[-1],        #Job Name
+            Rack, Node_List[0], Node_List[-1],        #Output File
+            Rack, Node_List[0], Node_List[-1],        #Error File
+            len(Node_List),                           #Number of Nodes
+            Rack, Node_List[0], Node_List[-1]         #Node list
     )
     f.write(description)
     Node_Combinations=combinations(Node_List)
@@ -67,10 +67,10 @@ export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_l
         node2=int(node2)
         f.write("\n")
         f.write("echo comet-%02d-%02d,comet-%02d-%02d\n"%(Rack,node1,Rack,node2))
-        f.write("srun -w comet-%02d-%02d,comet-%02d-%02d -N 2 -n 2 $BINARY\n"%(Rack,node1,Rack,node2))
+        f.write("srun -w comet-%02d-%02d,comet-%02d-%02d -N 2 -n 2  --mpi=pmi2 $BINARY\n"%(Rack,node1,Rack,node2))
     f.close()
     subprocess.call(["sbatch","batch_script"])     #Submit Batch Script
     subprocess.call(["rm","batch_script"])         #Delete Batch Script after submission
 
 for i in 3*range(20):
-    BatchScript(10,np.linspace(i+1,i+2,3))
+    BatchScript(10,np.linspace(i+1,i+3,3))
