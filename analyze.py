@@ -27,39 +27,49 @@ def analyze(filenames):
         writer.writerow(r)
     print("Results written to results.csv!")
 
-
+def get_results(filename):
+    '''
+    '''
+    #Extract Latency from Matrix
+    file=open(filename)
+    str2search=''
+    latency_times=[]
+    for message in file:
+        str2search += message
+    file.close()
+    word_search=re.findall('(1\s+)([\d\.]+)',str2search)
+    for sub_group in word_search:
+        if '1\n' not in sub_group:
+            latency_times.append(float(sub_group[1]))
+    #Extract info from filename to crate fieldnames
+    rack=int(filename[6:8])
+    node1=int(filename[10:12])
+    node2=int(filename[13:15])
+    array=combinations(np.linspace(node1,node2, node2-node1+1))
+    fieldnames=['#']
+    fieldnames+=['comet-'+str(rack)+'-'+str(int(i)) for i in np.linspace(node1,node2, node2-node1+1)]
+    #Matrix of latency times
+    matrix=np.zeros((node2-node1+1,node2-node1+1))
+    for first_node in np.linspace(node1,node2, node2-node1+1):
+        for combo in array:
+            if combo[0]==first_node:
+                node_pair_index=array.index(combo)
+                matrix[combo[0]-node1][combo[1]-node1]=latency_times[node_pair_index]
+                matrix[combo[1]-node1][combo[0]-node1]=latency_times[node_pair_index]
+    #Creation of CSV file
+    csvfile = open(filename.replace('.out','.csv'), 'w')
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writerow(dict((fn,fn) for fn in fieldnames))
+    for matrix_row in range(node2-node1+1):
+        node_dict={}
+        node_dict['#']='comet-'+str(rack)+'-'+str(int(first_node))
+        for matrix_col in range(node2-node1+1):
+            node_dict['comet-'+str(rack)+'-'+str(matrix_col+node1)]=matrix[matrix_col][matrix_row]
+        writer.writerow(node_dict)
+    print '%s created!'%(filename.replace('.out','.csv'))
 
 filename='comet-17-[12-14].out'
-file=open(filename)
-str2search=''
-latency_times=[]
-for message in file:
-	str2search += message
-file.close()
-word_search=re.findall('(1\s+)([\d\.]+)',str2search)
-for sub_group in word_search:
-    if '1\n' not in sub_group:
-        latency_times.append(float(sub_group[1]))
-
-rack=int(filename[6:8])
-node1=int(filename[10:12])
-node2=int(filename[13:15])
-array=combinations(np.linspace(node1,node2, node2-node1+1))
-fieldnames=['#']
-fieldnames+=['comet-'+str(rack)+'-'+str(i) for i in np.linspace(node1,node2, node2-node1+1)]
-csvfile = open('results.csv', 'w')
-writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-writer.writerow(dict((fn,fn) for fn in fieldnames))
-
-for first_node in np.linspace(node1,node2, node2-node1+1):
-    writer.writerow({'#':'comet-'+str(rack)+'-'+str(first_node)})
-    for combo in array:
-        if combo[0]==first_node:
-            node_pair_index=array.index(combo)
-#            writer.writerow({'#':first_node,str(array[node_pair_index][1]):latency_times[node_pair_index]})
-
-
-print rack
+get_results(filename)
 
 #if __name__ == "__main__":
 #    parser = argparse.ArgumentParser(
