@@ -1,3 +1,5 @@
+__author__='Syed Sadat Nazrul'
+
 import re
 import numpy as np
 import csv
