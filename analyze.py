@@ -8,7 +8,7 @@ def combinations(array):
     '''
     Generates every combination of an array
     :param array (list): List of nodes
-    :return: combinations (list)
+    :return: combinations ([[list]])
     '''
     combo=[]
     for i in array:
