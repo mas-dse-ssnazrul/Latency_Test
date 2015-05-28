@@ -3,6 +3,7 @@ __author__='Syed Sadat Nazrul'
 import re
 import numpy as np
 import csv
+import argparse
 
 def combinations(array):
     '''
@@ -60,6 +61,10 @@ def get_results(filename):
             node_dict['comet-'+str(rack)+'-'+str(matrix_col+node1)]=matrix[matrix_col][matrix_row]
         writer.writerow(node_dict)
     print '%s created!'%(filename.replace('.out','.csv'))
+
+def analyze(filenames):
+    for f in filenames:
+	get_results(f)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
