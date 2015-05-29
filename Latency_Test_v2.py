@@ -73,5 +73,12 @@ export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_l
     subprocess.call(["sbatch","batch_script"])     #Submit Batch Script
     subprocess.call(["rm","batch_script"])         #Delete Batch Script after submission
 
-for i in 3*range(20):
-    BatchScript(10,np.linspace(i+1,i+3,3))
+#Running latency test
+racks=[int(i) for i in np.linspace(1,29,29)]
+racks.remove(9)
+racks.remove(24)
+for rack in racks:
+    BatchScript(10,np.linspace(1,18,18))
+    BatchScript(10,np.linspace(19,36,18))
+    BatchScript(10,np.linspace(37,54,18))
+    BatchScript(10,np.linspace(55,72,18))
