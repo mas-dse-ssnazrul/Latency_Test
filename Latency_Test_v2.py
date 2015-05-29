@@ -48,7 +48,7 @@ def BatchScript(Rack, Node_List):
 #SBATCH -w comet-%02d-[%02d-%02d]
 #SBATCH --ntasks-per-node 1
 #SBATCH -t 01:00:00
-#SBATCH --mail-type END, FAIL
+#SBATCH --mail-type END
 #SBATCH --mail-user sadatnazrul@gmail.com
 #SBATCH -A use300
 export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_latency
