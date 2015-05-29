@@ -56,9 +56,9 @@ def get_results(filename):
     writer.writerow(dict((fn,fn) for fn in fieldnames))
     for matrix_row in range(node2-node1+1):
         node_dict={}
-        node_dict['#']='comet-'+str(rack)+'-'+str(int(first_node))
+        node_dict['#']='comet-'+str(rack)+'-'+str(matrix_row+node1)
         for matrix_col in range(node2-node1+1):
-            node_dict['comet-'+str(rack)+'-'+str(matrix_col+node1)]=matrix[matrix_col][matrix_row]
+            node_dict['comet-'+str(rack)+'-'+str(matrix_col+node1)]=matrix[matrix_row][matrix_col]
         writer.writerow(node_dict)
     print '%s created!'%(filename.replace('.out','.csv'))
 
@@ -68,7 +68,7 @@ def analyze(filenames):
    :param: filenames of latency output files
    :return: CSV file with latency times
    '''
-    for f in filenames:
+   for f in filenames:
 	get_results(f)
 
 if __name__ == "__main__":
