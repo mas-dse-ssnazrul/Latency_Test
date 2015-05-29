@@ -63,6 +63,11 @@ def get_results(filename):
     print '%s created!'%(filename.replace('.out','.csv'))
 
 def analyze(filenames):
+   '''
+   Takes in filenames from arg parser and runs them through get_results()
+   :param: filenames of latency output files
+   :return: CSV file with latency times
+   '''
     for f in filenames:
 	get_results(f)
 
