@@ -53,11 +53,11 @@ def BatchScript(Rack, Node_List):
 #SBATCH -A use300
 export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_latency
         '''%(
-            Rack, Node_List[0], Node_List[-1],        #Job Name
-            Rack, Node_List[0], Node_List[-1],        #Output File
-            Rack, Node_List[0], Node_List[-1],        #Error File
-            len(Node_List),                           #Number of Nodes
-            Rack, Node_List[0], Node_List[-1]         #Node list
+            Rack, Node_List[0], Node_List[-1],     #Job Name
+            Rack, Node_List[0], Node_List[-1],     #Output File
+            Rack, Node_List[0], Node_List[-1],     #Error File
+            len(Node_List),                        #Number of Nodes
+            Rack, Node_List[0], Node_List[-1]      #Node list
     )
     f.write(description)
     Node_Combinations=combinations(Node_List)
