@@ -78,7 +78,7 @@ racks=[int(i) for i in np.linspace(1,29,29)]
 racks.remove(9)
 racks.remove(24)
 for rack in racks:
-    BatchScript(10,np.linspace(1,18,18))
-    BatchScript(10,np.linspace(19,36,18))
-    BatchScript(10,np.linspace(37,54,18))
-    BatchScript(10,np.linspace(55,72,18))
+    BatchScript(rack,np.linspace(1,18,18))
+    BatchScript(rack,np.linspace(19,36,18))
+    BatchScript(rack,np.linspace(37,54,18))
+    BatchScript(rack,np.linspace(55,72,18))
