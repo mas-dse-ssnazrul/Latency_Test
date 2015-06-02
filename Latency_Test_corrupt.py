@@ -31,10 +31,12 @@ def latency_time(filename):
     result=(word_search.group()).split()
     return result
 
-def BatchScript(Rack, Node_List):
+def BatchScript(Rack, Node_List, Email='sadatnazrul@gmail.com'):
     '''
     Generates and submits a batch script for running OMB Latency testing
-    :param Node_Pair (int list): The pair of nodes. (int list)
+    :param Rack (int): Rack number
+    :param Node_List (int list): List of nodes in given rack
+    :param Email (string): Email address for receiving job updates
     :return: None
     '''
     #Generate a batch script
@@ -42,14 +44,14 @@ def BatchScript(Rack, Node_List):
     f.write("#!/bin/bash")
     description='''
 #SBATCH --job-name=comet-%02d-[%02d-%02d]_4wall
-#SBATCH -o comet-%02d-[%02d-%02d]_4wall.out
-#SBATCH -e comet-%02d-[%02d-%02d]_4wall.err
+#SBATCH -o comet-%02d-[%02d-%02d]_special.out
+#SBATCH -e comet-%02d-[%02d-%02d]_special.err
 #SBATCH --nodes %d
 #SBATCH -w comet-%02d-[%02d-%02d]
 #SBATCH --ntasks-per-node 1
 #SBATCH -t 00:00:20
 #SBATCH --mail-type END
-#SBATCH --mail-user sadatnazrul@gmail.com
+#SBATCH --mail-user %s
 #SBATCH -A use300
 export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_latency
         '''%(
@@ -57,7 +59,8 @@ export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_l
             Rack, Node_List[0], Node_List[-1],     #Output File
             Rack, Node_List[0], Node_List[-1],     #Error File
             len(Node_List),                        #Number of Nodes
-            Rack, Node_List[0], Node_List[-1]      #Node list
+            Rack, Node_List[0], Node_List[-1],     #Node list
+            Email                                  #Email address for job updates
     )
     f.write(description)
     Node_Combinations=combinations(Node_List)
@@ -67,7 +70,7 @@ export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_l
         node2=int(node2)
         f.write("\n")
         f.write("echo comet-%02d-%02d,comet-%02d-%02d\n"%(Rack,node1,Rack,node2))
-        f.write("srun -w comet-%02d-%02d,comet-%02d-%02d -N 2 -n 2  --mpi=pmi2 $BINARY\n"%(Rack,node1,Rack,node2))
+        f.write("srun -t 00:00:03 -w comet-%02d-%02d,comet-%02d-%02d -N 2 -n 2  --mpi=pmi2 $BINARY\n"%(Rack,node1,Rack,node2))
     f.write("python analyze.py *out")
     f.close()
     subprocess.call(["sbatch","batch_script"])     #Submit Batch Script
