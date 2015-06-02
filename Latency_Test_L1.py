@@ -67,7 +67,7 @@ export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_l
         node2=int(node2)
         f.write("\n")
         f.write("echo comet-%02d-%02d,comet-%02d-%02d\n"%(Rack,node1,Rack,node2))
-        f.write("srun -w comet-%02d-%02d,comet-%02d-%02d -N 2 -n 2  --mpi=pmi2 $BINARY\n"%(Rack,node1,Rack,node2))
+        f.write("srun -t 00:00:03 -w comet-%02d-%02d,comet-%02d-%02d -N 2 -n 2  --mpi=pmi2 $BINARY\n"%(Rack,node1,Rack,node2))
     f.write("python analyze.py *out")
     f.close()
     subprocess.call(["sbatch","batch_script"])     #Submit Batch Script
