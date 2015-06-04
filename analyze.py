@@ -45,6 +45,15 @@ def get_results(filename):
     fieldnames+=['comet-'+str(rack)+'-'+str(int(i)) for i in np.linspace(node1,node2, node2-node1+1)]
     #Matrix of latency times
     matrix=np.zeros((node2-node1+1,node2-node1+1))
+ 
+    print node1
+    print node2
+    print len(latency_times)
+    print latency_times
+    print len(array)
+    print array
+
+
     for first_node in np.linspace(node1,node2, node2-node1+1):
         for combo in array:
             if combo[0]==first_node:
