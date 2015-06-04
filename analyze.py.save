@@ -16,9 +16,7 @@ def combinations(array):
         for j in array:
             if i != j and set([i,j]) not in combo:
                 combo.append([i,j])
-    combo1=[]
-    [combo1.append(x) for x in combo if set(x) not in combo]
-    return combo1
+    return combo
 
 def get_results(filename):
     '''
@@ -33,9 +31,10 @@ def get_results(filename):
     for message in file:
         str2search += message
     file.close()
-    pattern=re.compile('^1\s+([\d.]+)$',re.M)
-    word_search=re.findall(pattern,str2search)
-    latency_times=[float(i) for i in word_search]
+    word_search=re.findall('(1\s+)([\d\.]+)',str2search)
+    for sub_group in word_search:
+        if '1\n' not in sub_group:
+            latency_times.append(float(sub_group[1]))
     #Extract info from filename to crate fieldnames
     rack=int(filename[6:8])
     node1=int(filename[10:12])
@@ -45,6 +44,18 @@ def get_results(filename):
     fieldnames+=['comet-'+str(rack)+'-'+str(int(i)) for i in np.linspace(node1,node2, node2-node1+1)]
     #Matrix of latency times
     matrix=np.zeros((node2-node1+1,node2-node1+1))
+
+
+    print len(latency_times)
+    print latency_times
+    print node1
+    print node2
+    print len(array)
+    print array
+    print np.linspace(node1,node2,node2-node1+1)
+
+
+
     for first_node in np.linspace(node1,node2, node2-node1+1):
         for combo in array:
             if combo[0]==first_node:
