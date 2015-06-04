@@ -31,7 +31,8 @@ def get_results(filename):
     for message in file:
         str2search += message
     file.close()
-    word_search=re.findall('(1\s+)([\d\.]+)',str2search)
+    pattern=re.compile('^1\s+([\d.]+)$',re.M)
+    word_search=re.findall(pattern,str2search)
     for sub_group in word_search:
         if '1\n' not in sub_group:
             latency_times.append(float(sub_group[1]))
