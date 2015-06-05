@@ -1,6 +1,6 @@
 Long Latency Times:
 comet-22-[37-54]
-comet-22-[57-72]
+comet-22-[55-72]
 comet-11-[19-36]
 
 Missing Outputs:
