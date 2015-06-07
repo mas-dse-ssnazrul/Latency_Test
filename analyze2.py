@@ -3,7 +3,6 @@ __author__='Syed Sadat Nazrul'
 import re
 import numpy as np
 import csv
-import argparse
 
 def combinations(array):
     '''
@@ -54,15 +53,7 @@ def get_results(filename):
     :return: CSV file with latency times
     '''
     #Extract Latency from Matrix
-    file=open(filename)
-    str2search=''
-    latency_times=[]
-    for message in file:
-        str2search += message
-    file.close()
-    pattern=re.compile('^1\s+([\d.]+)$',re.M)
-    word_search=re.findall(pattern,str2search)
-    latency_times=[float(i) for i in word_search]
+    latency_times=parse_latency(filename)
     #Extract info from filename to crate fieldnames
     [rack, node1, node2] = read_nodes(filename)
     array=combinations(np.linspace(node1,node2, node2-node1+1))
@@ -88,25 +79,5 @@ def get_results(filename):
         writer.writerow(node_dict)
     print '%s created!'%(filename.replace('.out','.csv'))
 
-'''
-def analyze(filenames):
-   '''
-#   Takes in filenames from arg parser and runs them through get_results()
-#   :param: filenames of latency output files
-#   :return: CSV file with latency times
-   '''
-   for f in filenames:
-	get_results(f)
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description='''Tool for analysis of Latency Tests''')
-    parser.add_argument(
-        'filenames', metavar='filenames', type=str, nargs="+",
-        help='Files to process. You may use wildcards, e.g., "python analyze.py *.out".')
-    args = parser.parse_args()
-    analyze(args.filenames)
-'''
-
-a=parse_latency('comet-17-[12-14].out')
-print a
+get_results('comet-19-[55-72].out')
