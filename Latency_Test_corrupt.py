@@ -78,4 +78,4 @@ export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_l
 
 #Running latency test
 BatchScript(22,np.linspace(37,54,18))
-BatchScript(11,np.linspace(19,36,18))
+BatchScript(22,np.linspace(55,72,18))
