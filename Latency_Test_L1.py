@@ -3,19 +3,8 @@ _author_='Syed Sadat Nazrul'
 import subprocess
 import numpy as np
 import re
-
-def combinations(array):
-    '''
-    Generates every combination of an array
-    :param array (list): List of nodes
-    :return: combinations (list)
-    '''
-    combo=[]
-    for i in array:
-        for j in array:
-            if i != j and set([i,j]) not in combo:
-                combo.append([i,j])
-    return combo
+from itertools import combinations
+import datetime
 
 def latency_time(filename):
     '''
@@ -39,13 +28,17 @@ def BatchScript(Rack, Node_List, Email='sadatnazrul@gmail.com'):
     :param Email (string): Email address for receiving job updates
     :return: None
     '''
+    #Get time
+    now = datetime.datetime.now()
+    time = now.strftime("%Y%m%d")
+
     #Generate a batch script
     f=open("batch_script", "w")
     f.write("#!/bin/bash")
     description='''
 #SBATCH --job-name=comet-%02d-[%02d-%02d]
-#SBATCH -o comet-%02d-[%02d-%02d].out
-#SBATCH -e comet-%02d-[%02d-%02d].err
+#SBATCH -o %d_osu_comet-%02d-[%02d-%02d].out
+#SBATCH -e %d_osu_comet-%02d-[%02d-%02d].err
 #SBATCH --nodes %d
 #SBATCH -w comet-%02d-[%02d-%02d]
 #SBATCH --ntasks-per-node 1
@@ -55,15 +48,15 @@ def BatchScript(Rack, Node_List, Email='sadatnazrul@gmail.com'):
 #SBATCH -A use300
 export BINARY=/home/ssnazrul/mpi_test/osu-micro-benchmarks-4.4.1/mpi/pt2pt/osu_latency
         '''%(
-            Rack, Node_List[0], Node_List[-1],     #Job Name
-            Rack, Node_List[0], Node_List[-1],     #Output File
-            Rack, Node_List[0], Node_List[-1],     #Error File
-            len(Node_List),                        #Number of Nodes
-            Rack, Node_List[0], Node_List[-1],     #Node list
-            Email                                  #Email address for job updates
+            time, Rack, Node_List[0], Node_List[-1],    #Job Name
+            time. Rack, Node_List[0], Node_List[-1],    #Output File
+            Rack, Node_List[0], Node_List[-1],          #Error File
+            len(Node_List),                             #Number of Nodes
+            Rack, Node_List[0], Node_List[-1],          #Node list
+            Email                                       #Email address for job updates
     )
     f.write(description)
-    Node_Combinations=combinations(Node_List)
+    Node_Combinations=combinations(Node_List, 2)
     for Node_Pair in Node_Combinations:
         [node1,node2]=Node_Pair
         node1=int(node1)
