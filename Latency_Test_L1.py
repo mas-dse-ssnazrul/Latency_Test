@@ -37,8 +37,8 @@ def BatchScript(Rack, Node_List, Email='sadatnazrul@gmail.com'):
     f.write("#!/bin/bash")
     description='''
 #SBATCH --job-name=comet-%02d-[%02d-%02d]
-#SBATCH -o %d_osu_comet-%02d-[%02d-%02d].out
-#SBATCH -e %d_osu_comet-%02d-[%02d-%02d].err
+#SBATCH -o osu_%d_comet-%02d-[%02d-%02d].out
+#SBATCH -e osu_%d_comet-%02d-[%02d-%02d].err
 #SBATCH --nodes %d
 #SBATCH -w comet-%02d-[%02d-%02d]
 #SBATCH --ntasks-per-node 1
