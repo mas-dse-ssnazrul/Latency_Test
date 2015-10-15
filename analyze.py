@@ -4,21 +4,7 @@ import re
 import numpy as np
 import csv
 import argparse
-
-def combinations(array):
-    '''
-    Generates every combination of an array
-    :param array (list): List of nodes
-    :return: combinations ([[list]])
-    '''
-    combo=[]
-    for i in array:
-        for j in array:
-            if i != j and set([i,j]) not in combo:
-                combo.append([i,j])
-    combo1=[]
-    [combo1.append(x) for x in combo if set(x) not in combo]
-    return combo1
+from itertools import combinations
 
 def get_results(filename):
     '''
@@ -40,7 +26,7 @@ def get_results(filename):
     rack=int(filename[6:8])
     node1=int(filename[10:12])
     node2=int(filename[13:15])
-    array=combinations(np.linspace(node1,node2, node2-node1+1))
+    array=combinations(np.linspace(node1,node2, node2-node1+1),2)
     fieldnames=['#']
     fieldnames+=['comet-'+str(rack)+'-'+str(int(i)) for i in np.linspace(node1,node2, node2-node1+1)]
     #Matrix of latency times
