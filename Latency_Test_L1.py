@@ -30,7 +30,7 @@ def BatchScript(Rack, Node_List, Email='sadatnazrul@gmail.com'):
     '''
     #Get time
     now = datetime.datetime.now()
-    time = now.strftime("%Y%m%d")
+    time = int(now.strftime("%Y%m%d"))
 
     #Generate a batch script
     f=open("batch_script", "w")
