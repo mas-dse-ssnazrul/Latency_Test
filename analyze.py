@@ -5,58 +5,55 @@ import numpy as np
 import csv
 import argparse
 from itertools import combinations
+import matplotlib.pyplot as plt
 
-def get_results(filename):
+def get_results(output):
     '''
-    Generates a CSV file of latency times
-    :param filename (string): Name of latency test output file
-    :return: CSV file with latency times
+    :param output: Output file
+    :return: Histogram with statistics and Latency data on text file
     '''
-    #Extract Latency from Matrix
-    file=open(filename)
-    str2search=''
-    latency_times=[]
-    for message in file:
-        str2search += message
-    file.close()
-    pattern=re.compile('^1\s+([\d.]+)$',re.M)
-    word_search=re.findall(pattern,str2search)
-    latency_times=[float(i) for i in word_search]
-    #Extract info from filename to crate fieldnames
-    rack=int(filename[6:8])
-    node1=int(filename[10:12])
-    node2=int(filename[13:15])
-    array=combinations(np.linspace(node1,node2, node2-node1+1),2)
-    fieldnames=['#']
-    fieldnames+=['comet-'+str(rack)+'-'+str(int(i)) for i in np.linspace(node1,node2, node2-node1+1)]
-    #Matrix of latency times
-    matrix=np.zeros((node2-node1+1,node2-node1+1))
- 
-    print node1
-    print node2
-    print len(latency_times)
-    print latency_times
-    print len(array)
-    print array
+    #Parse data
+    text_handle=open(output)
+    lines=text_handle.readlines()
+    text_handle.close()
+    data=[]
+    for i in range(len(lines)-4):
+        if lines[i][0:5]=='comet':
+            head=lines[i].split(',')
+            info=lines[i+4]
+            if info[0]=='1':
+                info=float(info.split()[1])
+            else:
+                info=np.nan
+            data.append([head[0],head[1][:-1],info])
 
+    #Text file
+    new_text=open(output[0:-4]+'.txt','a')
+    for line in data:
+        line=line[0]+'\t'+line[1]+'\t'+str(line[2])+'\n'
+        new_text.write(line)
+    new_text.close()
 
-    for first_node in np.linspace(node1,node2, node2-node1+1):
-        for combo in array:
-            if combo[0]==first_node:
-                node_pair_index=array.index(combo)
-                matrix[combo[0]-node1][combo[1]-node1]=latency_times[node_pair_index]
-                matrix[combo[1]-node1][combo[0]-node1]=latency_times[node_pair_index]
-    #Creation of CSV file
-    csvfile = open(filename.replace('.out','.csv'), 'w')
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    writer.writerow(dict((fn,fn) for fn in fieldnames))
-    for matrix_row in range(node2-node1+1):
-        node_dict={}
-        node_dict['#']='comet-'+str(rack)+'-'+str(matrix_row+node1)
-        for matrix_col in range(node2-node1+1):
-            node_dict['comet-'+str(rack)+'-'+str(matrix_col+node1)]=matrix[matrix_row][matrix_col]
-        writer.writerow(node_dict)
-    print '%s created!'%(filename.replace('.out','.csv'))
+    #Statistics
+    latency=[i[2] for i in data]
+    avg=float('{0:0.3f}'.format(np.nanmean(latency)))
+    stdev=float('{0:0.3f}'.format(np.nanstd(latency)))
+    nancount=latency.count(np.nan)
+    latency=[i for i in latency if np.isnan(i)==False]
+
+    #Plot
+    hist, bins = np.histogram(latency, bins=10)
+    width = 0.7*(bins[1]-bins[0])
+    center = (bins[:-1] + bins[1:]) / 2
+    f=plt.figure()
+    ax=f.add_subplot(111)
+    ax.bar(center, hist, align='center',width=width)
+    ax.set_xlabel(r'Latency Times / (us)')
+    ax.set_ylabel('Frequency')
+    ax.set_title(output[0:-4])
+    plot_text='mean: '+str(avg)+' us\nst. dev.: '+str(stdev)+' us\nNaN: '+str(nancount)
+    plt.text(0.8,0.9,plot_text,ha='center',va='center',transform=ax.transAxes)
+    plt.savefig(output[0:-4]+'.png',dpi=f.dpi)
 
 def analyze(filenames):
    '''
@@ -65,7 +62,7 @@ def analyze(filenames):
    :return: CSV file with latency times
    '''
    for f in filenames:
-	get_results(f)
+       get_results(f)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
